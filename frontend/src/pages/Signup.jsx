@@ -1,8 +1,44 @@
-import { Button, Label, TextInput, Card } from "flowbite-react";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Button, Label, TextInput, Card, Alert, Spinner } from "flowbite-react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const [formData,setFormData] = useState({});
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const naviage = useNavigate();
+  const handleChange = (e)=>{
+    setFormData({...formData,[e.target.id]:e.target.value.trim()});
+  }
+  const handleSubmit =async (e) => {
+    e.preventDefault();
+    if (!formData.username || !formData.email || !formData.password) {
+      return setError("Please fill out all fields.");
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/auth/signup',{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json'},
+          body:JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if(data.success === false){
+        return setError(data.message);
+      }
+      setLoading(false);
+      if(res.ok){
+        naviage('/sign-in');
+      }
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+      
+    }
+  }
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
       <Card className="w-full max-w-md shadow-2xl rounded-2xl">
@@ -18,25 +54,30 @@ const Signup = () => {
           </p>
         </div>
 
-        <form className="flex flex-col gap-4 mt-6">
+        <form className="flex flex-col gap-4 mt-6" onSubmit={handleSubmit}>
           <div>
             <Label htmlFor="username" value="Username" />
-            <TextInput id="username" type="text" placeholder="Enter username" required />
+            <TextInput id="username" type="text" placeholder="Enter username"  onChange={handleChange} />
           </div>
           <div>
             <Label htmlFor="email" value="Email" />
-            <TextInput id="email" type="email" placeholder="name@example.com" required />
+            <TextInput id="email" type="email" placeholder="name@example.com"  onChange={handleChange}/>
           </div>
           <div>
             <Label htmlFor="password" value="Password" />
-            <TextInput id="password" type="password" placeholder="••••••••" required />
+            <TextInput id="password" type="password" placeholder="••••••••"  onChange={handleChange}/>
           </div>
           <Button
             
             type="submit"
             className="bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800"
-          >
-            Sign Up
+          disabled={loading}>
+            {loading ?(
+              <>
+              <Spinner size="sm"/>
+              <span>Loading...</span>
+              </>
+            ):"Sign up"}
           </Button>
         </form>
 
@@ -46,6 +87,11 @@ const Signup = () => {
             Sign In
           </Link>
         </div>
+        {error && (
+          <Alert className="mt-5" color="failure">
+            {error}
+          </Alert>
+        )}
       </Card>
     </div>
   );
