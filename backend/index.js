@@ -20,3 +20,13 @@ app.listen(3000,()=>{
 })
 app.use('/api/user',userRoute);
 app.use('/api/auth',authRoute);
+
+app.use((err,req,res,next)=>{
+    const statuscode = err.statuscode || 500;
+    const message = err.message || 'Internal server error';
+    res.status(statuscode).json({
+        success:false,
+        statuscode,
+        message
+    });
+})
