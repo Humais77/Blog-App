@@ -3,14 +3,16 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoute = require('./routes/user.route.js')
 const authRoute = require('./routes/auth.route.js');
+const connectDB = require('./config/db.js');
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URL).then(() => {
-    console.log('Connected to MongoDB');
+// mongoose.connect(process.env.MONGO_URL).then(() => {
+//     console.log('Connected to MongoDB');
 
-}).catch((err) => {
-    console.error('Error connecting to MongoDB:', err);
-});
+// }).catch((err) => {
+//     console.error('Error connecting to MongoDB:', err);
+// });
+connectDB();
 const app = express();
 app.use(express.json());
 
