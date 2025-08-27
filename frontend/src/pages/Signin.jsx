@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { sigInStart,sigInSuccess,signInFailure } from "../redux/user/userSlice";
 import { useDispatch,useSelector } from "react-redux";
+import OAuth from "../components/OAuth";
 const Signin = () => {
   const [formData,setFormData] = useState({});
   const {loading,error} = useSelector((state=>state.user));
@@ -74,8 +75,8 @@ const Signin = () => {
               </>
             ):"Sign in"}
           </Button>
+          <OAuth/>
         </form>
-
         <div className="flex justify-center gap-1 mt-5 text-sm">
           <span className="text-gray-600 dark:text-gray-300">Don't have an account?</span>
           <Link to="/sign-up" className="text-blue-600 hover:underline">
