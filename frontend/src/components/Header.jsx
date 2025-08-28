@@ -1,11 +1,12 @@
 import React from 'react'
-import { Button, Navbar, TextInput, NavbarCollapse, NavbarLink, NavbarToggle } from 'flowbite-react'
+import { Button, Navbar, TextInput, NavbarCollapse, NavbarLink, NavbarToggle, Dropdown, Avatar, DropdownDivider,DropdownHeader,DropdownItem } from 'flowbite-react'
 import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { FaMoon } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 const Header = () => {
     const path = useLocation().pathname;
-
+    const { currentUser } = useSelector(state => state.user)
     return (
         <Navbar className='border-b-2'>
             <Link to='/' className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
@@ -26,11 +27,44 @@ const Header = () => {
                 <Button className='w-22 h-10 hidden sm:inline' color={'gray'} pill>
                     <FaMoon />
                 </Button>
-                <Link to="/sign-in">
-                    <Button className="bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800" outline>
-                        Sign In
-                    </Button>
-                </Link>
+                {currentUser ? (
+                    <Dropdown
+                        arrowIcon={false}
+                        inline
+                        label={
+                            <Avatar
+                                alt="User settings"
+                                img={currentUser.profilePicture}
+                                rounded
+                            />
+                        }
+                        
+                    >
+                        <DropdownHeader >
+                            <span className="block text-sm font-semibold">
+                                @{currentUser.username}
+                            </span>
+                            <span className="block truncate text-sm font-medium">
+                                {currentUser.email}
+                            </span>
+                        </DropdownHeader>
+                        <DropdownItem as={Link} to="/dashboard?tab=profile">
+                            Profile
+                        </DropdownItem>
+                        <DropdownDivider />
+                        <DropdownItem>
+                            Sign out
+                        </DropdownItem>
+                    </Dropdown>
+                ) :
+                    (
+                        <Link to="/sign-in">
+                            <Button className="bg-gradient-to-br from-purple-600 to-blue-500 text-white hover:bg-gradient-to-bl focus:ring-blue-300 dark:focus:ring-blue-800" outline>
+                                Sign In
+                            </Button>
+                        </Link>
+                    )
+                }
                 <NavbarToggle />
 
 
