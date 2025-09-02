@@ -18,7 +18,7 @@ const Dashboard = () => {
       <div className="md:w-56">
         <DashSideBar/>
       </div>
-      <div className="">
+      <div className="flex-1 flex justify-center items-start">
         {tab === 'profile' && <DashProfile/>}
       </div>
     </div>
