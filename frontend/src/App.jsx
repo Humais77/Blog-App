@@ -8,6 +8,8 @@ import Projects from './pages/Projects.jsx'
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
+import OnlyPrivatePrivateRoute from './components/OnlyAdminPrivateRoute.jsx';
+import CreatePost from './pages/CreatePost.jsx';
 function App() {
 
   return (
@@ -21,6 +23,10 @@ function App() {
           <Route element={<PrivateRoute/>}>
             <Route path='/dashboard' element={<Dashboard/>}/>
           </Route>
+          <Route element={<OnlyPrivatePrivateRoute/>}>
+            <Route path='/create-post' element={<CreatePost/>}/>
+          </Route>
+
           <Route path='/projects' element={<Projects/>}/>
         </Routes>
           <Footer/>
