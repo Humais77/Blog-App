@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import DashSideBar from '../components/DashSideBar';
 import DashProfile from '../components/DashProfile';
+import DashPosts from '../components/DashPosts';
 
 const Dashboard = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ const Dashboard = () => {
       </div>
       <div className="flex-1 flex justify-center items-start">
         {tab === 'profile' && <DashProfile/>}
+        {tab === 'posts' && <DashPosts/>}
       </div>
     </div>
   )
