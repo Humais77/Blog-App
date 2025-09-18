@@ -8,3 +8,160 @@ body{
 .ql-editior{
     font-size: 1.05rem;
 }
+/* === BLOG CONTENT BASE === */
+.post-content {
+  max-width: 750px;
+  margin: 2rem auto;
+  font-family: 'Georgia', serif;
+  line-height: 1.75;
+  font-size: 1.05rem;
+  transition: color 0.3s, background 0.3s;
+}
+
+/* Paragraphs */
+.post-content p {
+  margin-bottom: 1.2rem;
+}
+
+/* Headings */
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  font-weight: 700;
+  margin: 1.8rem 0 1rem;
+  line-height: 1.3;
+}
+
+/* Links */
+.post-content a {
+  text-decoration: none;
+  border-bottom: 1px dotted;
+  transition: color 0.2s, border-bottom-color 0.2s;
+}
+.post-content a:hover {
+  border-bottom-style: solid;
+}
+
+/* Lists */
+.post-content ul,
+.post-content ol {
+  margin: 1.2rem 0 1.2rem 2rem;
+  padding: 0;
+}
+.post-content li {
+  margin-bottom: 0.6rem;
+}
+
+/* Blockquotes */
+.post-content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid;
+  font-style: italic;
+  border-radius: 0.5rem;
+}
+
+/* Code blocks */
+.post-content pre {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+.post-content code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+}
+
+/* Images */
+.post-content img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s;
+}
+
+/* === LIGHT MODE === */
+.post-content {
+  color: #333;
+  background: #fff;
+}
+.post-content h1 {
+  font-size: 2rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.3rem;
+}
+.post-content h2 {
+  font-size: 1.6rem;
+  border-left: 4px solid #3b82f6; /* blue accent */
+  padding-left: 0.5rem;
+}
+.post-content h3 {
+  font-size: 1.3rem;
+  color: #444;
+}
+.post-content a {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+.post-content a:hover {
+  color: #1d4ed8;
+  border-bottom-color: #1d4ed8;
+}
+.post-content blockquote {
+  background: #f9fafb;
+  border-left-color: #3b82f6;
+  color: #555;
+}
+.post-content pre {
+  background: #1e293b;
+  color: #f8fafc;
+}
+.post-content code {
+  background: #f3f4f6;
+  color: #111;
+}
+
+/* === DARK MODE === */
+.dark .post-content {
+  color: #e5e7eb; /* gray-200 */
+  background: #0f172a; /* slate-900 */
+}
+.dark .post-content h1 {
+  border-bottom: 2px solid #334155; /* slate-700 */
+}
+.dark .post-content h2 {
+  border-left-color: #60a5fa; /* blue-400 */
+  color: #f1f5f9; /* slate-50 */
+}
+.dark .post-content h3 {
+  color: #cbd5e1; /* slate-300 */
+}
+.dark .post-content a {
+  color: #60a5fa;
+  border-bottom-color: #60a5fa;
+}
+.dark .post-content a:hover {
+  color: #93c5fd; /* blue-300 */
+  border-bottom-color: #93c5fd;
+}
+.dark .post-content blockquote {
+  background: #1e293b; /* slate-800 */
+  border-left-color: #60a5fa;
+  color: #cbd5e1;
+}
+.dark .post-content pre {
+  background: #0f172a; /* slate-900 */
+  color: #f8fafc;
+}
+.dark .post-content code {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+.dark .post-content img {
+  box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+}
