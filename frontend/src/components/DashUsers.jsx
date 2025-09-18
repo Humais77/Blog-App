@@ -46,6 +46,18 @@ const DashUsers = () => {
     }
   };
   const handleDeleteUsers = async()=>{
+    try {
+      const res = await fetch(`/api/user/delete/${userIdToDelete}`,{
+        method:'DELETE',
+      });
+      const data = await res.json();
+      if(res.ok){
+        setUser((prev)=>prev.filter((user)=>user._id !== userIdToDelete));
+        setShowModal(false);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   }
   return (
     <div className="overflow-x-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-700">
