@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const userRoute = require('./routes/user.route.js')
 const authRoute = require('./routes/auth.route.js');
 const postRoute = require('./routes/post.route.js')
+const commentRoute = require('./routes/comment.route.js')
 const connectDB = require('./config/db.js');
 const cookieParser = require('cookie-parser')
 const multer = require('multer')
@@ -42,6 +43,7 @@ app.use("/uploads", express.static("uploads"));
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/post', postRoute);
+app.use('/api/comment', commentRoute);
 
 app.use((err, req, res, next) => {
   const statuscode = err.statuscode || 500;
