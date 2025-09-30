@@ -1,8 +1,9 @@
 const express = require('express');
 const { verifyToken } = require('../utils/verifyUser');
-const { createComment, getPostComments, likeComment } = require('../controllers/comment.controllers');
+const { createComment, getPostComments, likeComment, EditComment } = require('../controllers/comment.controllers');
 const router = express.Router();
 router.post('/create',verifyToken,createComment);
 router.get('/getPostComments/:postId',getPostComments);
 router.put('/likeComment/:commentId',verifyToken,likeComment);
+router.put('/EditComment/:commentId',verifyToken,EditComment);
 module.exports = router;
