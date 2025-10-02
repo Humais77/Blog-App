@@ -14,6 +14,7 @@ import UpdatePost from './pages/UpdatePost.jsx';
 import PostPage from './pages/PostPage.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import PublicRoute from './components/PublicRoute.jsx';
+import Search from './pages/Search.jsx';
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/sign-in" element={<Signin />} />
           <Route path="/sign-up" element={<Signup />} />
         </Route>
+        <Route path="/search" element={<Search />} />
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
