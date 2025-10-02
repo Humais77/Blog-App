@@ -1,9 +1,11 @@
 import { Button, Label, TextInput, Card, Alert, Spinner } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
+  const {currentUser} = useSelector((state=>state.user));
   const [formData,setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,6 +41,11 @@ const Signup = () => {
       
     }
   }
+  useEffect(()=>{
+      if(currentUser){
+        naviage('/');
+      }
+    },[currentUser,naviage]);
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
